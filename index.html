@@ -5,16 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title></title>
+        <title>Pomodoro Clock</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700,900n" rel="stylesheet"> -->
         <!-- <link href="css\bootstrap.min.css" rel="stylesheet"> -->
-        <link href="css\.css" rel="stylesheet">
+        <link href="css\pomodoroClock.css" rel="stylesheet">
     </head>
 
     <body>
-        
+        <div class="container">
+            <div class="row">
+                <div class="timer" onclick="fillButton()">
+                    <p></p>
+                    <svg class="box" width="400" height="100" >
+                        <rect id="rect" width="400" height="100" />
+                        <path id="drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
+                    </svg>
+                </div>
+
+
+
+            </div>
+        </div>
+
         
     <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -22,6 +36,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- <script src="js\bootstrap.min.js"></script> -->
-        <script src="js\calculator.js"></script>
+        <script src="js\pomodoroClock.js"></script>
     </body>
 </html>
