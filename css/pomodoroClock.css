@@ -5,38 +5,11 @@
 body {
   background: grey;
 }
-
-button {
-  background: none;
-  border: 0px;
-  border-top-width: 0px;
-  /* border: 2px solid red; */
-  color: red;
-  font-weight: 700px;
-  width: 300px;
-  height: 100px;
-  transition: all 10s;
+h1 {
+  text-align: center;
+  font-family: 'Audiowide', cursive;
+  font-size: 3em;
 }
-
-button:focus{
-  outline: none;
-}
-
-.timer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px auto;
-  cursor: pointer;
-}
-
-button.filling {
-  border-top-width: 300px;
-  border: 2px blue solid;
-  color: blue;
-}
-
 
 rect {
   stroke: white;
@@ -56,6 +29,18 @@ path {
 }
 
 path.drawing {
+  -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
   stroke-dashoffset: 0;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px auto;
+  cursor: pointer;
 }
