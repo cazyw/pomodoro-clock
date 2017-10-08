@@ -1,13 +1,14 @@
 :root {
   --my-transition-time: 10s;
+  --circle-length: 628.406494140625;
 }
 
 body {
   background: grey;
+  font-family: 'Audiowide', cursive;
 }
 h1 {
   text-align: center;
-  font-family: 'Audiowide', cursive;
   font-size: 3em;
 }
 
@@ -17,7 +18,30 @@ rect {
   stroke-width: 20;
 }
 
-path {
+circle {
+  stroke: white;
+  fill: transparent;
+  stroke-width: 10;
+}
+
+path#circ-drawing {
+  stroke-width: 10;
+  fill: transparent;
+  stroke: red;
+  /* fill: green; */
+  stroke-dasharray: var(--circle-length) var(--circle-length);
+  stroke-dashoffset: var(--circle-length);
+}
+
+path#circ-drawing.drawing {
+  -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -o-transition: stroke-dashoffset var(--my-transition-time) linear;
+  transition: stroke-dashoffset var(--my-transition-time) linear;
+  stroke-dashoffset: 0;
+}
+
+path#rect-drawing {
   stroke-width: 20;
   fill: transparent;
   stroke: red;
@@ -28,7 +52,7 @@ path {
   left: 0;
 }
 
-path.drawing {
+path#rect-drawing.drawing {
   -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
@@ -43,4 +67,10 @@ path.drawing {
   justify-content: center;
   padding: 50px auto;
   cursor: pointer;
+  box-sizing: border-box;
+}
+.box {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }

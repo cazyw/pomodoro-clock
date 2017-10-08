@@ -15,18 +15,25 @@
 
     <body>
         <h1>Pomodore Clock</h1>
+        <div class="text-center">
+            The timer is currently: <span id="time-set">unset</span>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="timer" onclick="fillButton()">
                     <p></p>
                     <svg class="box" width="400" height="100" >
                         <rect id="rect" width="400" height="100" />
-                        <path id="drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
+                        <path id="rect-drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
+                    </svg>
+                    <p></p>
+                    <svg class="box" width="220" height="220" >
+                        <circle id="circle" cx="110" cy="110" r="100"/>
+                        <path id="circ-drawing" class="" d="M110 10
+                                A45, 45, 0, 0, 1, 110 210
+                                A45, 45, 0, 0, 1, 110 10"/>
                     </svg>
                 </div>
-
-
-
             </div>
         </div>
 
