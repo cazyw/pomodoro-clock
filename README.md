@@ -39,5 +39,5 @@ The example given used a circle that slowly filled as time passed. I've seen a f
 
 Initially I tried using a button. I was able to get the border of the button to change colours over time (using `transition: color`) however I was unable to get the border to draw itself/fill in. What seemed to be used by others was `svg` or scalable vector graphics.
 
-I've never used these before so it took a bit of research but I finally settled on using a `rect` as a base, and `path` to fill in the "border of the circle".
+I've never used these before so it took a bit of research but I finally settled on using a `circ` as a base, and `path` to fill in the "border of the circle".
 
