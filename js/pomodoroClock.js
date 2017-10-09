@@ -6,15 +6,19 @@ let timer
 
 const fillButton = () => {
   let pathCirc = document.getElementsByTagName("path")[0].classList
-  if (pathCirc.contains("drawing")) {
-    pathCirc.remove("drawing")
-    document.getElementById("time-set").innerHTML = "unset"
-  } else {
-    // let time = prompt("Time in seconds: ")
+  if (!pathCirc.contains("drawing")) {
     let circ = document.querySelector("#circ-drawing")
     let time = parseInt(document.getElementById("session-time").innerText) * 60
     sessionTime = time
-    document.getElementById("time-set").innerHTML = `${time / 60} minutes ${time % 60} seconds`
+    let mins = Math.floor(sessionTime / 60)
+    let secs = Math.floor(sessionTime % 60)
+    if (mins < 10) {
+      mins = "0" + mins
+    }
+    if (secs < 10) {
+      secs = "0" + secs
+    }
+    document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
     circ.style.setProperty("--my-transition-time", `${time}s`)
     pathCirc.add("drawing")
     timer = setInterval(countDown, 1000);
@@ -26,8 +30,32 @@ const countDown = () => {
     clearInterval(timer)
   }
   sessionTime -= 1;
-  document.getElementById("time-set").innerHTML = `${Math.floor(sessionTime / 60)} minutes ${Math.floor(sessionTime % 60)} seconds` 
+  let mins = Math.floor(sessionTime / 60)
+  let secs = Math.floor(sessionTime % 60)
+  if (mins < 10) {
+    mins = "0" + mins
+  }
+  if (secs < 10) {
+    secs = "0" + secs
+  }
+  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
   console.log(sessionTime)
+}
+
+const clearTime = () => {
+  clearInterval(timer)
+  sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
+  let mins = Math.floor(sessionTime / 60)
+  let secs = Math.floor(sessionTime % 60)
+  if (mins < 10) {
+    mins = "0" + mins
+  }
+  if (secs < 10) {
+    secs = "0" + secs
+  }
+  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
+  let pathCirc = document.getElementsByTagName("path")[0].classList
+  pathCirc.remove("drawing")
 }
 
 const changeTime = (id) => {
@@ -37,12 +65,15 @@ const changeTime = (id) => {
       document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) - 1
     }
   } else if (id === "break-plus") {
-      document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) + 1
+    document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) + 1
   } else if (id === "session-minus") {
     if (parseInt(document.getElementById("session-time").innerText) > 1) {
       document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) - 1
     }
   } else if (id === "session-plus") {
-      document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
+    document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
   }
+  sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
+  document.getElementById("time-set").innerHTML = `${Math.floor(sessionTime / 60)} minutes ${Math.floor(sessionTime % 60)} seconds` 
+  
 }

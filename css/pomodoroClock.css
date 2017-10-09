@@ -106,14 +106,30 @@ path#rect-drawing.drawing {
   align-items: center;
   justify-content: center;
 }
+.timer-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls-text {
+  padding: 0px 30px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
 
 .control, .control-num {
   padding: 5px 20px;
   font-size: 2em;
 }
+
 .control {
   cursor: pointer;
+}
 
+.control-num {
+  /* color: orange */
 }
 
 .timer-text {
