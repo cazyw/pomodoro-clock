@@ -12,6 +12,11 @@ h1 {
   font-size: 3em;
 }
 
+svg {
+  cursor: pointer;
+
+}
+
 rect {
   stroke: white;
   fill: transparent;
@@ -27,7 +32,7 @@ circle {
 path#circ-drawing {
   stroke-width: 10;
   fill: transparent;
-  stroke: red;
+  stroke: orange;
   /* fill: green; */
   stroke-dasharray: var(--circle-length) var(--circle-length);
   stroke-dashoffset: var(--circle-length);
@@ -66,11 +71,51 @@ path#rect-drawing.drawing {
   align-items: center;
   justify-content: center;
   padding: 50px auto;
-  cursor: pointer;
   box-sizing: border-box;
 }
 .box {
   /* display: flex;
   justify-content: center;
   align-items: center; */
+}
+
+.dash {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.break, .session {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 30px;
+}
+
+.divider {
+  height: 70px;
+  border: 2px solid orange;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.control, .control-num {
+  padding: 5px 20px;
+  font-size: 2em;
+}
+.control {
+  cursor: pointer;
+
+}
+
+.timer-text {
+  font-size: 1.5em;
 }

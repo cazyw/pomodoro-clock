@@ -15,20 +15,39 @@
 
     <body>
         <h1>Pomodore Clock</h1>
-        <div class="text-center">
-            The timer is currently: <span id="time-set">unset</span>
-        </div>
         <div class="container">
-            <div class="row">
-                <div class="timer" onclick="fillButton()">
-                    <p></p>
-                    <svg class="box" width="400" height="100" >
+            <div class="row dash">
+                <div class="break">
+                    <h3>Break</h3>     
+                    <div class="controls">               
+                        <div class="control" id="break-minus" onclick="changeTime('break-minus')">-</div>
+                        <div class="control-num" id="break-time">5</div>
+                        <div class="control" id="break-plus" onclick="changeTime('break-plus')" >+</div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="session">
+                    <h3>Session</h3>
+                    <div class="controls">               
+                        <div class="control" id="session-minus" onclick="changeTime('session-minus')">-</div>
+                        <div class="control-num" id="session-time">5</div>
+                        <div class="control" id="session-plus" onclick="changeTime('session-plus')">+</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="text-center timer-text">
+                The timer is currently: <span id="time-set">unset</span>
+            </div>
+            <div class="timer">
+                <p></p>
+                <!-- <svg class="box" width="400" height="100" >
                         <rect id="rect" width="400" height="100" />
                         <path id="rect-drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
-                    </svg>
+                    </svg> -->
                     <p></p>
-                    <svg class="box" width="220" height="220" >
-                        <circle id="circle" cx="110" cy="110" r="100"/>
+                    <svg class="box" width="220" height="220" onclick="fillButton()">
+                        <circle id="circle" cx="110" cy="110" r="100" />
                         <path id="circ-drawing" class="" d="M110 10
                                 A45, 45, 0, 0, 1, 110 210
                                 A45, 45, 0, 0, 1, 110 10"/>

@@ -1,21 +1,36 @@
 const fillButton = () => {
-  let path_rect = document.getElementsByTagName("path")[0].classList
-  let path_circ = document.getElementsByTagName("path")[1].classList
-  if (path_rect.contains("drawing") && path_circ.contains("drawing")) {
-    path_rect.remove("drawing")
-    path_circ.remove("drawing")
+  let pathCirc = document.getElementsByTagName("path")[0].classList
+  if (pathCirc.contains("drawing")) {
+    pathCirc.remove("drawing")
     document.getElementById("time-set").innerHTML = "unset"
   } else {
-    let time = prompt("Time in seconds: ")
-    let rect = document.querySelector("#rect-drawing")
+    // let time = prompt("Time in seconds: ")
     let circ = document.querySelector("#circ-drawing")
-    document.getElementById("time-set").innerHTML = `${time} seconds`
-    rect.style.setProperty("--my-transition-time", `${time}s`)
+    let time = parseInt(document.getElementById("session-time").innerText) * 60
+    document.getElementById("time-set").innerHTML = `${time / 60} minutes ${time % 60} seconds`
     circ.style.setProperty("--my-transition-time", `${time}s`)
-    path_rect.add("drawing")
-    path_circ.add("drawing")
+    pathCirc.add("drawing")
+    setInterval(countDown, 1000);
   }
-  let myPath = document.getElementById("circ-drawing");
-  var length = myPath.getTotalLength();
-  console.log(length);
+}
+
+const countDown = () => {
+  
+}
+
+const changeTime = (id) => {
+  console.log(id);
+  if (id === "break-minus") {
+    if (parseInt(document.getElementById("break-time").innerText) > 0) {
+      document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) - 1
+    }
+  } else if (id === "break-plus") {
+      document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) + 1
+  } else if (id === "session-minus") {
+    if (parseInt(document.getElementById("session-time").innerText) > 0) {
+      document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) - 1
+    }
+  } else if (id === "session-plus") {
+      document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
+  }
 }
