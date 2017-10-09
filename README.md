@@ -13,6 +13,18 @@ Build an app that is functionally similar to this: https://codepen.io/freeCodeCa
 ## Operating Instructions
 
 <!-- <img src="" width="450" alt=""> -->
+Currently it's possible to:
+* Set and change the length of the timer (in minutes)
+* Start the timer
+* Pause the timer
+* Restart a paused timer
+* Clear the timer
+
+Features to be added:
+* Break
+* Change the shape of the path
+
+The code also must be refactored
 
 
 ## Discussion
@@ -27,4 +39,5 @@ The example given used a circle that slowly filled as time passed. I've seen a f
 
 Initially I tried using a button. I was able to get the border of the button to change colours over time (using `transition: color`) however I was unable to get the border to draw itself/fill in. What seemed to be used by others was `svg` or scalable vector graphics.
 
-I've never used these before so it took a bit of research but I finally settled on using a `rect` as a base, and `path` to fill in the "border of the rectangle".
+I've never used these before so it took a bit of research but I finally settled on using a `rect` as a base, and `path` to fill in the "border of the circle".
+
