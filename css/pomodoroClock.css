@@ -1,6 +1,7 @@
 :root {
   --my-transition-time: 10s;
   --circle-length: 628.406494140625;
+  --circle-offset: 628.406494140625;
 }
 
 body {
@@ -35,7 +36,7 @@ path#circ-drawing {
   stroke: orange;
   /* fill: green; */
   stroke-dasharray: var(--circle-length) var(--circle-length);
-  stroke-dashoffset: var(--circle-length);
+  stroke-dashoffset: var(--circle-offset);
 }
 
 path#circ-drawing.drawing {

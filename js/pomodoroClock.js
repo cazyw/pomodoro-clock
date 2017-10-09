@@ -8,19 +8,9 @@ const fillButton = () => {
   let pathCirc = document.getElementsByTagName("path")[0].classList
   if (!pathCirc.contains("drawing")) {
     let circ = document.querySelector("#circ-drawing")
-    let time = parseInt(document.getElementById("session-time").innerText) * 60
-    sessionTime = time
-    let mins = Math.floor(sessionTime / 60)
-    let secs = Math.floor(sessionTime % 60)
-    if (mins < 10) {
-      mins = "0" + mins
-    }
-    if (secs < 10) {
-      secs = "0" + secs
-    }
-    document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
-    circ.style.setProperty("--my-transition-time", `${time}s`)
+    circ.style.setProperty("--my-transition-time", `${sessionTime}s`)
     pathCirc.add("drawing")
+    pathCirc.remove("paused")
     timer = setInterval(countDown, 1000);
   }
 }
@@ -56,6 +46,20 @@ const clearTime = () => {
   document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
   let pathCirc = document.getElementsByTagName("path")[0].classList
   pathCirc.remove("drawing")
+  pathCirc.remove("paused")
+  let line = document.getElementById("circ-drawing")
+  line.style.setProperty("--circle-offset", 628.406494140625)
+}
+
+const pauseTime = () => {
+  clearInterval(timer)
+  let line = document.getElementById("circ-drawing")
+  let offset = getComputedStyle(line).strokeDashoffset
+  console.log(offset)
+  let pathCirc = document.getElementsByTagName("path")[0].classList
+  pathCirc.remove("drawing")
+  line.style.setProperty("--circle-offset", offset)
+  pathCirc.add("paused")
 }
 
 const changeTime = (id) => {
@@ -74,6 +78,14 @@ const changeTime = (id) => {
     document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
   }
   sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
-  document.getElementById("time-set").innerHTML = `${Math.floor(sessionTime / 60)} minutes ${Math.floor(sessionTime % 60)} seconds` 
+  let mins = Math.floor(sessionTime / 60)
+  let secs = Math.floor(sessionTime % 60)
+  if (mins < 10) {
+    mins = "0" + mins
+  }
+  if (secs < 10) {
+    secs = "0" + secs
+  }
+  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
   
 }
