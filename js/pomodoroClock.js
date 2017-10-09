@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-let sessionTime = 900
+let sessionTime = 1500
 let breakTime = 300
 let timer
 
