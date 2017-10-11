@@ -68,9 +68,10 @@ path#space-drawing.drawing {
   stroke-dashoffset: 0;
 }
 
-text {
+text#countdown {
   text-anchor: middle;
-  font-size: 2em;
+  font-size: 3em;
+  fill: rgb(51, 51, 51);
 }
 .timer {
   display: flex;
@@ -122,7 +123,7 @@ text {
 
 .controls-text {
   padding: 0px 30px;
-  font-size: 1.5em;
+  font-size: 2em;
   cursor: pointer;
 }
 
@@ -141,4 +142,16 @@ text {
 
 .timer-text {
   font-size: 1.5em;
+}
+
+#clear {
+  color: #6868D3;
+}
+
+#start {
+  color: #35D484;
+}
+
+#pause {
+  color: #D48435;
 }

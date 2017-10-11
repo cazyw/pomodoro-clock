@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <h1>Pomodore Clock</h1>
+        <h1>Pomodoro Clock</h1>
         <div class="container">
             <div class="row dash">
                 <div class="break">
@@ -40,7 +40,9 @@
                     Timer: <span id="time-set">25 minutes 00 seconds</span>
                 </div>
                 <div class="timer-controls">
-                    <div id="clear" class="text-center controls-text" onclick="clearTime()">Clear</div>
+                    <div id="clear" class="text-center controls-text" onclick="clearTime()">Reset</div>
+                    <div id="start" class="text-center controls-text" onclick="fillButton()">Start</div>
+
                     <div id="pause" class="text-center controls-text" onclick="pauseTime()">Pause</div>
                 </div>  
                 <div class="timer">
@@ -50,15 +52,12 @@
                             <path id="rect-drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
                         </svg> -->
                     <p></p>
-                    <svg class="spaceship" width="600" height="600">
-                        <path id="space-drawing" d="M 250 600 V 520 H 80 L 10 450 L 240 210 L 220 160 L 270 130  C 270 120, 265 30, 300 20 C 335 30, 330 120, 330 130 L 380 160 L 360 210 L 590 450 L 520 520 H 350 V 600"  />
-                    </svg>
-                    <svg class="box" width="220" height="220" onclick="fillButton()">
+                    <svg class="box" width="220" height="220">
                         <circle id="circle" cx="110" cy="110" r="100" />
                         <path id="circ-drawing" class="" d="M110 10
                         A45, 45, 0, 0, 1, 110 210
                         A45, 45, 0, 0, 1, 110 10"/>
-                        <text x="105" y="110">Start</text>
+                        <text id="countdown" x="110" y="120">25:00</text>
                     </svg>
                 </div>
             </div>

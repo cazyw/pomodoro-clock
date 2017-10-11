@@ -29,6 +29,7 @@ const countDown = () => {
     secs = "0" + secs
   }
   document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
+  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
   console.log(sessionTime)
 }
 
@@ -43,6 +44,7 @@ const clearTime = () => {
   if (secs < 10) {
     secs = "0" + secs
   }
+  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
   document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
   let pathCirc = document.getElementsByTagName("path")[0].classList
   pathCirc.remove("drawing")
@@ -86,6 +88,7 @@ const changeTime = (id) => {
   if (secs < 10) {
     secs = "0" + secs
   }
+  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
   document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
   
 }
