@@ -8,21 +8,12 @@ body {
   background: grey;
   font-family: 'Audiowide', cursive;
 }
+
 h1 {
   text-align: center;
   font-size: 3em;
 }
 
-svg {
-  cursor: pointer;
-
-}
-
-rect {
-  stroke: white;
-  fill: transparent;
-  stroke-width: 20;
-}
 
 circle {
   stroke: white;
@@ -127,17 +118,19 @@ text#countdown {
   cursor: pointer;
 }
 
-.control, .control-num {
-  padding: 5px 20px;
-  font-size: 2em;
-}
-
 .control {
+  padding: 5px 10px;
+  font-size: 2em;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .control-num {
   /* color: orange */
+  width: 80px;
+  padding: 5px 5px;
+  font-size: 2em;
+  text-align: center;
 }
 
 .timer-text {
@@ -149,9 +142,9 @@ text#countdown {
 }
 
 #start {
-  color: #35D484;
+  color: #68D39E;
 }
 
 #pause {
-  color: #D48435;
+  color: #D36868;
 }

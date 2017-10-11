@@ -16,7 +16,7 @@ const fillButton = () => {
 }
 
 const countDown = () => {
-  if (sessionTime === 0) {
+  if (sessionTime === 1) {
     clearInterval(timer)
   }
   sessionTime -= 1;
