@@ -3,6 +3,20 @@
 let sessionTime = 1500
 let breakTime = 300
 let timer
+let status = "session"
+
+const updateDisplay = () => {
+  let mins = Math.floor(sessionTime / 60)
+  let secs = Math.floor(sessionTime % 60)
+  if (mins < 10) {
+    mins = "0" + mins
+  }
+  if (secs < 10) {
+    secs = "0" + secs
+  }
+  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
+  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
+}
 
 const fillButton = () => {
   let pathCirc = document.getElementsByTagName("path")[0].classList
@@ -20,32 +34,14 @@ const countDown = () => {
     clearInterval(timer)
   }
   sessionTime -= 1;
-  let mins = Math.floor(sessionTime / 60)
-  let secs = Math.floor(sessionTime % 60)
-  if (mins < 10) {
-    mins = "0" + mins
-  }
-  if (secs < 10) {
-    secs = "0" + secs
-  }
-  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
-  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
+  updateDisplay()
   console.log(sessionTime)
 }
 
 const clearTime = () => {
   clearInterval(timer)
   sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
-  let mins = Math.floor(sessionTime / 60)
-  let secs = Math.floor(sessionTime % 60)
-  if (mins < 10) {
-    mins = "0" + mins
-  }
-  if (secs < 10) {
-    secs = "0" + secs
-  }
-  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
-  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
+  updateDisplay()
   let pathCirc = document.getElementsByTagName("path")[0].classList
   pathCirc.remove("drawing")
   pathCirc.remove("paused")
@@ -80,15 +76,6 @@ const changeTime = (id) => {
     document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
   }
   sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
-  let mins = Math.floor(sessionTime / 60)
-  let secs = Math.floor(sessionTime % 60)
-  if (mins < 10) {
-    mins = "0" + mins
-  }
-  if (secs < 10) {
-    secs = "0" + secs
-  }
-  document.getElementById("countdown").innerHTML = `${mins}:${secs}`
-  document.getElementById("time-set").innerHTML = `${mins} minutes ${secs} seconds` 
+  updateDisplay()
   
 }
