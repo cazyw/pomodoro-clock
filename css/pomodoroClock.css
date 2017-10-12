@@ -24,21 +24,35 @@ circle {
 path#circ-drawing {
   stroke-width: 10;
   fill: transparent;
-  stroke: orange;
   /* fill: green; */
   stroke-dasharray: var(--circle-length) var(--circle-length);
   stroke-dashoffset: var(--circle-offset);
 }
 
-path#circ-drawing.drawing {
+path#circ-drawing.drawing-session {
   -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
+  stroke: orange;
   stroke-dashoffset: 0;
 }
 
-path#space-drawing {
+path#circ-drawing.drawing-break {
+  -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
+  -o-transition: stroke-dashoffset var(--my-transition-time) linear;
+  transition: stroke-dashoffset var(--my-transition-time) linear;
+  stroke: #68D39E;
+  stroke-dashoffset: 0;
+}
+
+path#circ-drawing.paused {
+  storke: orange;
+  stroke-dashoffset: 0;
+}
+
+/* path#space-drawing {
   stroke-width: 10;
   fill: transparent;
   stroke: orange  ;
@@ -51,13 +65,13 @@ path#space-drawing {
   /* left: 0; */
 }
 
-path#space-drawing.drawing {
+/* path#space-drawing.drawing {
   -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
   stroke-dashoffset: 0;
-}
+} */ 
 
 text#countdown {
   text-anchor: middle;

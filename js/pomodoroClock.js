@@ -20,11 +20,11 @@ const updateDisplay = () => {
 
 const fillButton = () => {
   let pathCirc = document.getElementsByTagName("path")[0].classList
-  if (!pathCirc.contains("drawing")) {
+  if (!pathCirc.contains("drawing-session")) {
     let circ = document.querySelector("#circ-drawing")
     circ.style.setProperty("--my-transition-time", `${sessionTime}s`)
-    pathCirc.add("drawing")
     pathCirc.remove("paused")
+    pathCirc.add("drawing-session")
     timer = setInterval(countDown, 1000);
   }
 }
@@ -32,6 +32,8 @@ const fillButton = () => {
 const countDown = () => {
   if (sessionTime === 1) {
     clearInterval(timer)
+    document.getElementById("circ-drawing").add("drawing-break")
+    fillButton()
   }
   sessionTime -= 1;
   updateDisplay()
@@ -42,22 +44,29 @@ const clearTime = () => {
   clearInterval(timer)
   sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
   updateDisplay()
-  let pathCirc = document.getElementsByTagName("path")[0].classList
-  pathCirc.remove("drawing")
+  let pathCirc = document.getElementById("circ-drawing").classList
+  pathCirc.remove("drawing-session")
+  pathCirc.remove("drawing-break")
   pathCirc.remove("paused")
-  let line = document.getElementById("circ-drawing")
-  line.style.setProperty("--circle-offset", 628.406494140625)
+  // let line = document.getElementById("circ-drawing-session")
+  pathCirc.style.setProperty("--circle-offset", 628.406494140625)
 }
 
 const pauseTime = () => {
   clearInterval(timer)
-  let line = document.getElementById("circ-drawing")
-  let offset = getComputedStyle(line).strokeDashoffset
+  let path = document.getElementById("circ-drawing")
+  let offset = getComputedStyle(path).strokeDashoffset
   console.log(offset)
-  let pathCirc = document.getElementsByTagName("path")[0].classList
-  pathCirc.remove("drawing")
-  line.style.setProperty("--circle-offset", offset)
-  pathCirc.add("paused")
+  // let pathCirc = document.getElementsByTagName("path")[0].classList
+  // path.remove("drawing-session")
+  // path.remove("drawing-break")
+  path.classList.add("paused")
+  path.style.setProperty("--circle-offset", offset)
+  if (path.classList.contains("drawing-session")) {
+    path.style.setProperty("stroke", "orange")
+  } else if (path.classlist.contains("drawing-break")) {
+    path.style.setProperty("stroke", "#68D39E")
+  }
 }
 
 const changeTime = (id) => {
