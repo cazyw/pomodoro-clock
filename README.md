@@ -20,12 +20,10 @@ Currently it's possible to:
 * Restart a paused timer
 * Clear the timer
 
+The timer cycles between study sessions and breaks
+
 Features to be added:
-* Break
-* Change the shape of the path
-
-The code also must be refactored
-
+* Audio
 
 ## Discussion
 
@@ -41,3 +39,13 @@ Initially I tried using a button. I was able to get the border of the button to 
 
 I've never used these before so it took a bit of research but I finally settled on using a `circ` as a base, and `path` to fill in the "border of the circle".
 
+The colour flips between study sessions and breaks with the colour filling up when studying and emptying when on a break.
+
+### Operation
+
+Once the timer starts, it cycles between study sessions and breaks indefinitely.
+
+* A study session can be a max of 45mins
+* A study session cannot be shorter than the break 
+* A break cannot be longer than a study session
+* The session and break length can only be changed when the timer isn't running or paused
