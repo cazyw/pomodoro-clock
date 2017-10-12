@@ -1,65 +1,56 @@
 /* eslint-disable */
 
-let sessionTime = 1500
-let breakTime = 300
 let timer
-let status = "Session"
+let time = {
+  sessionTime: 1500,
+  breakTime: 300,
+  status: "session"
+}
 
-const updateDisplay = (type) => {
-  let mins, secs
-  if(type === "Session") {
-    mins = Math.floor(sessionTime / 60)
-    secs = Math.floor(sessionTime % 60)
-    
-  } else {
-    mins = Math.floor(breakTime / 60)
-    secs = Math.floor(breakTime % 60)
-  }
+const updateDisplay = () => {
+  let mins = Math.floor(time[time.status + "Time"] / 60)
+  let secs = Math.floor(time[time.status + "Time"] % 60)
   if (mins < 10) {
     mins = "0" + mins
   }
   if (secs < 10) {
     secs = "0" + secs
   }
-  document.getElementById("time-set").innerHTML = `${type}: ${mins} minutes ${secs} seconds` 
+  document.getElementById("time-set").innerHTML = `It's ${time.status.toUpperCase()} time!` 
   document.getElementById("countdown").innerHTML = `${mins}:${secs}`
 }
 
 const fillButton = () => {
-  let pathCirc = document.getElementsByTagName("path")[0].classList
-  if (status === "Session" && !pathCirc.contains("drawing-session")) {
-    let circ = document.querySelector("#circ-drawing")
-    circ.style.setProperty("--my-transition-time", `${sessionTime}s`)
-    document.getElementById("circ-drawing").style.setProperty("stroke", "orange")
-    pathCirc.remove("paused")
-    pathCirc.add("drawing-session")
-    timer = setInterval(countDown, 1000);
-  } else if (status === "Break" && !pathCirc.contains("drawing-break")) {
-    let circ = document.querySelector("#circ-drawing")
-    circ.style.setProperty("--my-transition-time", `${breakTime}s`)
-    document.getElementById("circ-drawing").style.setProperty("stroke", "#68D39E")
-    pathCirc.remove("paused")
-    pathCirc.add("drawing-break")
-    timer = setInterval(countDown, 1000);
+  let path = document.getElementById("circ-drawing")
+  if (!path.classList.contains("drawing-session") && !path.classList.contains("drawing-break")){
+    path.style.setProperty("--my-transition-time", `${time[time.status + "Time"]}s`)
+    path.classList.add(`drawing-${time.status}`)
+    path.classList.remove("paused")
+    if (time.status === "session"){
+      document.getElementById("circ-drawing").style.setProperty("stroke", "orange")
+    } else {
+      document.getElementById("circ-drawing").style.setProperty("stroke", "#FFCB00")
+    }
+    timer = setInterval(countDown, 1000)
   }
 }
 
 const countDown = () => {
-  let pathCirc = document.getElementById("circ-drawing").classList
-  if (pathCirc.contains("drawing-session")){
-    if(sessionTime === 1) {
+  let pathClass = document.getElementById("circ-drawing").classList
+  if (pathClass.contains("drawing-session")){
+    if(time.sessionTime === 1) {
       clearInterval(timer)
       document.getElementById("circ-drawing").classList.remove("drawing-session")
       document.getElementById("circ-drawing").classList.add("drawing-break")
       document.getElementById("circ-drawing").style.setProperty("--my-transition-time", `${breakTime}s`)
-      document.getElementById("circ-drawing").style.setProperty("stroke", "#68D39E")
+      document.getElementById("circ-drawing").style.setProperty("stroke", "#FFCB00")
       status = "Break"
       timer = setInterval(countDown, 1000);
-      sessionTime = parseInt(document.getElementById("session-time").innerText) * 60 + 1
+      time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60 + 1
     }
-    sessionTime -= 1
-  } else if (pathCirc.contains("drawing-break")){
-    if (breakTime === 1){
+    time.sessionTime -= 1
+  } else if (pathClass.contains("drawing-break")){
+    if (time.breakTime === 1){
       clearInterval(timer)
       document.getElementById("circ-drawing").classList.remove("drawing-break")
       document.getElementById("circ-drawing").classList.add("drawing-session")
@@ -67,66 +58,61 @@ const countDown = () => {
       document.getElementById("circ-drawing").style.setProperty("stroke", "orange")
       status = "Session"
       timer = setInterval(countDown, 1000);
-      breakTime = parseInt(document.getElementById("break-time").innerText) * 60 + 1
+      time.breakTime = parseInt(document.getElementById("break-time").innerText) * 60 + 1
     } 
-    breakTime -= 1
+    time.breakTime -= 1
   }
-  updateDisplay(status)
-  console.log(sessionTime, breakTime)
+  updateDisplay()
+  console.log(time.sessionTime, time.breakTime)
 
 }
 
 const clearTime = () => {
   clearInterval(timer)
-  sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
-  updateDisplay("Session")
-  let pathCirc = document.getElementById("circ-drawing").classList
-  pathCirc.remove("drawing-session")
-  pathCirc.remove("drawing-break")
-  pathCirc.remove("paused")
-  let line = document.getElementById("circ-drawing")
-  line.style.setProperty("--circle-offset", line.getTotalLength())
+  time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
+  status = "session"
+  updateDisplay()
+  let pathClass = document.getElementById("circ-drawing").classList
+  pathClass.remove("drawing-session")
+  pathClass.remove("drawing-break")
+  pathClass.remove("paused")
+  let path = document.getElementById("circ-drawing")
+  path.style.setProperty("--circle-offset", path.getTotalLength())
 }
 
 const pauseTime = () => {
   clearInterval(timer)
   let path = document.getElementById("circ-drawing")
   let offset = getComputedStyle(path).strokeDashoffset
-  console.log(offset)
-  // let pathCirc = document.getElementsByTagName("path")[0].classList
-  let pathCirc = document.getElementById("circ-drawing").classList
   path.style.setProperty("--circle-offset", offset)
-  if (pathCirc.contains("drawing-session")) {
+  console.log(offset)
+  let pathClass = document.getElementById("circ-drawing").classList
+  if (pathClass.contains("drawing-session")) {
     path.style.setProperty("stroke", "orange")
-    pathCirc.remove("drawing-session")
-  } else if (pathCirc.contains("drawing-break")) {
-    path.style.setProperty("stroke", "#68D39E")
-    pathCirc.remove("drawing-break")
+    pathClass.remove("drawing-session")
+  } else if (pathClass.contains("drawing-break")) {
+    path.style.setProperty("stroke", "#FFCB00")
+    pathClass.remove("drawing-break")
   }
-  pathCirc.add("paused")
+  pathClass.add("paused")
 }
 
 const changeTime = (id) => {
   console.log(id);
+  let breakDisplay = parseInt(document.getElementById("break-time").innerText)
+  let sessDisplay = parseInt(document.getElementById("session-time").innerText)
   if(document.getElementById("circ-drawing").classList.length === 0) {
-    if (id === "break-minus") {
-      if (parseInt(document.getElementById("break-time").innerText) > 1) {
-        document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) - 1
-      }
-    } else if (id === "break-plus") {
-      document.getElementById("break-time").innerHTML = parseInt(document.getElementById("break-time").innerText) + 1
-    } else if (id === "session-minus") {
-      if (parseInt(document.getElementById("session-time").innerText) > 1) {
-        document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) - 1
-      }
-    } else if (id === "session-plus") {
-      document.getElementById("session-time").innerHTML = parseInt(document.getElementById("session-time").innerText) + 1
+    if (id === "break-minus" && breakDisplay > 1) {
+      document.getElementById("break-time").innerHTML = breakDisplay - 1
+    } else if (id === "break-plus" && breakDisplay < sessDisplay) {
+      document.getElementById("break-time").innerHTML = breakDisplay + 1
+    } else if (id === "session-minus" && sessDisplay > 1 && sessDisplay > breakDisplay) {
+        document.getElementById("session-time").innerHTML = sessDisplay - 1
+    } else if (id === "session-plus" && sessDisplay < 45) {
+      document.getElementById("session-time").innerHTML = sessDisplay + 1
     }
-    sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
-    breakTime = parseInt(document.getElementById("break-time").innerText) * 60
-    updateDisplay("Session")
-
+    time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
+    time.breakTime = parseInt(document.getElementById("break-time").innerText)* 60
+    updateDisplay()
   }
-  
-  
 }

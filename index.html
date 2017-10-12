@@ -8,7 +8,7 @@
         <title>Pomodoro Clock</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,700,900n" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Audiowide|Orbitron:400,700,900n" rel="stylesheet">
         <!-- <link href="css\bootstrap.min.css" rel="stylesheet"> -->
         <link href="css\pomodoroClock.css" rel="stylesheet">
     </head>
@@ -37,8 +37,9 @@
             </div>
             <div class="row">
                 <div class="text-center timer-text">
-                    <span id="time-set">Session: 25 minutes 00 seconds</span>
+                    <span id="time-set">It's SESSION time!</span>
                 </div>
+                <hr>
                 <div class="timer-controls">
                     <div id="clear" class="text-center controls-text" onclick="clearTime()">Reset</div>
                     <div id="start" class="text-center controls-text" onclick="fillButton()">Start</div>
@@ -54,6 +55,12 @@
                         A45, 45, 0, 0, 1, 110 10"/>
                         <text id="countdown" x="110" y="120">25:00</text>
                     </svg>
+                </div>
+            </div>
+            <div class="row">
+                <div class="description">
+                    <p>A pomodoro timer alternates between study sessions and break sessions. The default is for a study session of 25mins followed by a break of 5mins and then the cycle continues.</p>
+                    <p>You can change the timer settings above however the session cannot be longer than 45mins and the break cannot be longer than the session.</p>
                 </div>
             </div>
         </div>
