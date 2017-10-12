@@ -151,9 +151,7 @@ text#countdown {
   h3, .controls, .timer-controls {
     font-size: 1.5em;
   }
-  .description {
-    font-size: 1em;
-  }
+
   .dash {
     padding-top: 0px;
   }
