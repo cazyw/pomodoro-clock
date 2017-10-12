@@ -18,11 +18,11 @@ h1 {
 circle {
   stroke: white;
   fill: transparent;
-  stroke-width: 10;
+  stroke-width: 20;
 }
 
 path#circ-drawing {
-  stroke-width: 10;
+  stroke-width: 20;
   fill: transparent;
   /* fill: green; */
   stroke-dasharray: var(--circle-length) var(--circle-length);
@@ -44,34 +44,9 @@ path#circ-drawing.drawing-break {
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
   stroke: #68D39E;
-  stroke-dashoffset: 0;
+  stroke-dasharray: var(--circle-length) var(--circle-length);
+  stroke-dashoffset: var(--circle-length);
 }
-
-path#circ-drawing.paused {
-  storke: orange;
-  stroke-dashoffset: 0;
-}
-
-/* path#space-drawing {
-  stroke-width: 10;
-  fill: transparent;
-  stroke: orange  ;
-  stroke-linecap: "round";
-  stroke-linejoin: "round";
-  /* stroke-dasharray: 1000 1000; */
-  /* stroke-dashoffset: 1000; */
-  /* position: absolute; */
-  /* top: 0; */
-  /* left: 0; */
-}
-
-/* path#space-drawing.drawing {
-  -moz-transition: stroke-dashoffset var(--my-transition-time) linear;
-  -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
-  -o-transition: stroke-dashoffset var(--my-transition-time) linear;
-  transition: stroke-dashoffset var(--my-transition-time) linear;
-  stroke-dashoffset: 0;
-} */ 
 
 text#countdown {
   text-anchor: middle;
@@ -85,11 +60,6 @@ text#countdown {
   justify-content: center;
   padding: 50px auto;
   box-sizing: border-box;
-}
-.box {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .dash {

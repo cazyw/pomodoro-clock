@@ -37,20 +37,15 @@
             </div>
             <div class="row">
                 <div class="text-center timer-text">
-                    Session: <span id="time-set">25 minutes 00 seconds</span>
+                    <span id="time-set">Session: 25 minutes 00 seconds</span>
                 </div>
                 <div class="timer-controls">
                     <div id="clear" class="text-center controls-text" onclick="clearTime()">Reset</div>
-                    <div id="start" class="text-center controls-text" onclick="fillButton('session')">Start</div>
+                    <div id="start" class="text-center controls-text" onclick="fillButton()">Start</div>
 
                     <div id="pause" class="text-center controls-text" onclick="pauseTime()">Pause</div>
                 </div>  
                 <div class="timer">
-                    <p></p>
-                    <!-- <svg class="box" width="400" height="100" >
-                            <rect id="rect" width="400" height="100" />
-                            <path id="rect-drawing" class="" d="M0 0 L400 0 L400 100 L0 100 Z" />
-                        </svg> -->
                     <p></p>
                     <svg class="box" width="220" height="220">
                         <circle id="circle" cx="110" cy="110" r="100" />
