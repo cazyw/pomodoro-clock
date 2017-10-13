@@ -21,15 +21,6 @@ const updateDisplay = () => {
   document.getElementById("state").innerHTML = time.status.toUpperCase()
 }
 
-const operateTime = () => {
-  if (document.getElementById("circ-drawing").classList.contains("paused") ||
-      document.getElementById("circ-drawing").classList.length === 0) {
-    startTimer()
-  } else {
-    pauseTimer()
-  }
-}
-
 const startDrawing = (adding, removing) => {
   let path = document.getElementById("circ-drawing")
   path.style.setProperty("--my-transition-time", `${time[time.status + "Time"]}s`)
@@ -106,5 +97,14 @@ const changeTime = (id) => {
     time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
     time.breakTime = parseInt(document.getElementById("break-time").innerText)* 60
     updateDisplay()
+  }
+}
+
+const operateTime = () => {
+  if (document.getElementById("circ-drawing").classList.contains("paused") ||
+      document.getElementById("circ-drawing").classList.length === 0) {
+    startTimer()
+  } else {
+    pauseTimer()
   }
 }
