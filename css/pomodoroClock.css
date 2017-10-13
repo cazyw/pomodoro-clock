@@ -116,11 +116,13 @@ body {
 
 .timer-controls #state {
   font-size: 0.7em;
+  padding: 0px 0px;
 }
 
 .controls-text {
   /* padding: 0px 30px; */
   cursor: pointer;
+  padding: 0px 0px;
 }
 
 .control {
@@ -162,5 +164,9 @@ body {
 
   .dash {
     padding-top: 0px;
+  }
+
+  .timer {
+    padding-top: 0px; 
   }
 }
