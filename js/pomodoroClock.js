@@ -1,11 +1,10 @@
 /* eslint-disable */
-
 let timer
 let time = {
   sessionTime: 1500,
   breakTime: 300,
   status: "session",
-  breakColor: "rgb(30, 150, 255)",
+  breakColor: "rgb(97, 181, 253)",
   sessionColor: "rgb(255, 165, 0)"
 }
 
@@ -25,63 +24,46 @@ const updateDisplay = () => {
 const operateTime = () => {
   if (document.getElementById("circ-drawing").classList.contains("paused") ||
       document.getElementById("circ-drawing").classList.length === 0) {
-    fillButton()
+    startTimer()
   } else {
-    pauseTime()
+    pauseTimer()
   }
 }
 
-const fillButton = () => {
+const startDrawing = (adding, removing) => {
+  let path = document.getElementById("circ-drawing")
+  path.style.setProperty("--my-transition-time", `${time[time.status + "Time"]}s`)
+  path.style.setProperty("stroke", `${time[time.status + "Color"]}`)
+  path.classList = ""
+  path.classList.add(`drawing-${adding}`)
+  document.body.style.setProperty("border", `5px solid ${time[time.status + "Color"]}`)
+  time[removing + "Time"] = parseInt(document.getElementById(removing + "-time").innerText) * 60
+  document.getElementById("operate").innerHTML = `<i class="fa fa-pause" aria-hidden="true"></i>`
+}
+
+const startTimer = () => {
   let path = document.getElementById("circ-drawing")
   if (!path.classList.contains("drawing-session") && !path.classList.contains("drawing-break")){
-    path.style.setProperty("--my-transition-time", `${time[time.status + "Time"]}s`)
-    path.classList.add(`drawing-${time.status}`)
-    path.classList.remove("paused")
-    document.getElementById("operate").innerHTML = `<i class="fa fa-pause" aria-hidden="true"></i>`
-    document.body.style.setProperty("border", '5px solid orange')
-    if (time.status === "session"){
-      document.getElementById("circ-drawing").style.setProperty("stroke", "orange")
-    } else {
-      document.getElementById("circ-drawing").style.setProperty("stroke", "#FFCB00")
-    }
+    time.status === "session" ? startDrawing("session", "break") : startDrawing("break", "session")
     timer = setInterval(countDown, 1000)
   }
 }
 
 const countDown = () => {
-  let pathClass = document.getElementById("circ-drawing").classList
-  if (pathClass.contains("drawing-session")){
-    if(time.sessionTime === 1) {
-      clearInterval(timer)
-      document.getElementById("circ-drawing").classList.remove("drawing-session")
-      document.getElementById("circ-drawing").classList.add("drawing-break")
-      document.getElementById("circ-drawing").style.setProperty("--my-transition-time", `${time.breakTime}s`)
-      document.getElementById("circ-drawing").style.setProperty("stroke", "#FFCB00")
-      document.getElementById("operate").innerHTML = `<i class="fa fa-pause" aria-hidden="true"></i>`
-      time.status = "break"
-      document.body.style.setProperty("border", '5px solid #FFCB00')
-      timer = setInterval(countDown, 1000);
-      time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60 + 1
-    }
-    time.sessionTime -= 1
-  } else if (pathClass.contains("drawing-break")){
-    if (time.breakTime === 1){
-      clearInterval(timer)
-      document.getElementById("circ-drawing").classList.remove("drawing-break")
-      document.getElementById("circ-drawing").classList.add("drawing-session")
-      document.getElementById("circ-drawing").style.setProperty("--my-transition-time", `${time.sessionTime}s`)
-      document.getElementById("circ-drawing").style.setProperty("stroke", "orange")
-      document.body.style.setProperty("border", '5px solid orange')
-      document.getElementById("operate").innerHTML = `<i class="fa fa-play" aria-hidden="true"></i>`
-      time.status = "session"
-      timer = setInterval(countDown, 1000);
-      time.breakTime = parseInt(document.getElementById("break-time").innerText) * 60 + 1
-    } 
-    time.breakTime -= 1
-  }
-  updateDisplay()
-  console.log(time.sessionTime, time.breakTime)
   
+  if (time.sessionTime === 0 || time.breakTime === 0) {
+    clearInterval(timer)
+    let oldStatus = time.status
+    let newStatus = (time.status === "session") ? "break" : "session"
+    time.status = newStatus
+    updateDisplay()
+    startDrawing(newStatus, oldStatus)
+    timer = setInterval(countDown, 1000)
+  } else {
+    time[time.status + "Time"] -= 1
+    updateDisplay()
+    console.log(time.sessionTime, time.breakTime)
+  }
 }
 
 const clearTime = () => {
@@ -89,36 +71,26 @@ const clearTime = () => {
   time.sessionTime = parseInt(document.getElementById("session-time").innerText) * 60
   time.status = "session"
   updateDisplay()
-  let pathClass = document.getElementById("circ-drawing").classList
-  pathClass.remove("drawing-session")
-  pathClass.remove("drawing-break")
-  pathClass.remove("paused")
+  document.getElementById("circ-drawing").classList = ""
+  document.body.style.setProperty("border", '5px solid rgb(255, 165, 0)')
   let path = document.getElementById("circ-drawing")
-  document.body.style.setProperty("border", '5px solid orange')
   path.style.setProperty("--circle-offset", path.getTotalLength())
   document.getElementById("operate").innerHTML = `<i class="fa fa-play" aria-hidden="true"></i>`
 }
 
-const pauseTime = () => {
+const pauseTimer = () => {
   clearInterval(timer)
   document.getElementById("operate").innerHTML = `<i class="fa fa-play" aria-hidden="true"></i>`
   let path = document.getElementById("circ-drawing")
   let offset = getComputedStyle(path).strokeDashoffset
   path.style.setProperty("--circle-offset", offset)
-  console.log(offset)
+  path.style.setProperty("stroke", `${time[time.status + "Color"]}`)
   let pathClass = document.getElementById("circ-drawing").classList
-  if (pathClass.contains("drawing-session")) {
-    path.style.setProperty("stroke", "orange")
-    pathClass.remove("drawing-session")
-  } else if (pathClass.contains("drawing-break")) {
-    path.style.setProperty("stroke", "#FFCB00")
-    pathClass.remove("drawing-break")
-  }
+  pathClass.remove(`drawing-${time.status}`)
   pathClass.add("paused")
 }
 
 const changeTime = (id) => {
-  console.log(id);
   let breakDisplay = parseInt(document.getElementById("break-time").innerText)
   let sessDisplay = parseInt(document.getElementById("session-time").innerText)
   if(document.getElementById("circ-drawing").classList.length === 0) {

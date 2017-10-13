@@ -22,9 +22,6 @@ Currently it's possible to:
 
 The timer cycles between study sessions and breaks
 
-Features to be added:
-* Audio
-
 ## Discussion
 
 Remember to include the following if using eslint
@@ -46,6 +43,5 @@ The colour flips between study sessions and breaks with the colour filling up wh
 Once the timer starts, it cycles between study sessions and breaks indefinitely.
 
 * A study session can be a max of 45mins
-* A study session cannot be shorter than the break 
-* A break cannot be longer than a study session
+* A break can be a max of 45mins
 * The session and break length can only be changed when the timer isn't running or paused

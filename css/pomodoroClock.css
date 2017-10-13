@@ -4,24 +4,24 @@
   --circle-offset: 628.406494140625;
 }
 
+html {
+  height: 95%;
+}
 body {
-  background: grey;
+  margin: 10px;
+  border: 5px solid rgb(255, 165, 0);
+  height: 100%;
+  background: rgb(128, 128, 128);
   font-family: 'Audiowide', cursive;
 }
 
 h1 {
   text-align: center;
   font-size: 3em;
-  
-}
-
-hr {
-  width: 70%;
-  border: 2px solid orange;
 }
 
 circle {
-  stroke: white;
+  stroke: rgb(255, 255, 255);
   fill: transparent;
   stroke-width: 20;
 }
@@ -29,7 +29,6 @@ circle {
 path#circ-drawing {
   stroke-width: 20;
   fill: transparent;
-  /* fill: green; */
   stroke-dasharray: var(--circle-length) var(--circle-length);
   stroke-dashoffset: var(--circle-offset);
 }
@@ -39,7 +38,7 @@ path#circ-drawing.drawing-session {
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
-  stroke: orange;
+  stroke: rgb(255, 165, 0);
   stroke-dashoffset: 0;
 }
 
@@ -48,7 +47,7 @@ path#circ-drawing.drawing-break {
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
-  stroke: #FFCB00;
+  stroke: rgb(97, 181, 253);
   stroke-dasharray: var(--circle-length) var(--circle-length);
   stroke-dashoffset: var(--circle-length);
 }
@@ -58,26 +57,8 @@ text#countdown {
   font-size: 3em;
   fill: rgb(51, 51, 51);
 }
-.timer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 10px;
-  box-sizing: border-box;
-}
 
-html {
-  height: 95%;
-}
-body {
-  margin: 10px;
-  border: 5px solid orange;
-  height: 100%;
-}
-
-
-.dash {
+.break-session {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -90,83 +71,77 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 48%;
-  /* padding: 5px 30px; */
+  width: 50%;
 }
 
-.divider {
-  height: 70px;
-  border: 2px solid rgb(255, 165, 0);
-}
-
-.controls {
+.timer-length-controls {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: 2em;
 }
-.timer-controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 3em;
-}
 
-.timer-controls #state {
-  font-size: 0.7em;
-  padding: 0px 0px;
-}
-
-.controls-text {
-  /* padding: 0px 30px; */
-  cursor: pointer;
-  padding: 0px 0px;
-}
-
-.control {
-  /* padding: 5px 10px; */
-  cursor: pointer;
+.timer-length {
   text-align: center; 
   padding: 0px 0px;
-  /* border-radius: 5px; */
 }
 
-.control-num {
-  /* width: 80px; */
-  /* padding: 5px 5px; */
-  text-align: center;
-  padding: 0px 0px;
+.timer-length:nth-child(odd) {
+  cursor: pointer;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
 }
 
 .timer-text {
   font-size: 1.5em;
 }
 
-.description {
-  padding: 30px 10px;
-  font-size: 1.5em;
-  font-family: 'Architects Daughter', cursive;
+.timer-operations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 3em;
+  padding: 0px 0px;
+  text-align: center;
+}
+
+.timer-operations #state {
+  font-size: 0.7em;
+}
+
+.timer-operator {
+  cursor: pointer;
+  padding: 0px 0px;
 }
 
 @media (max-width: 460px) {
   h1 {
     font-size: 2em;
   }
-  h3, .controls {
+  h3, .timer-length-controls {
     font-size: 1.5em;
   }
 
-  .timer-controls #state {
+  .timer-operations #state {
     font-size: 0.5em;
   }
 
-  .dash {
+  .break-session {
     padding-top: 0px;
+    padding-bottom: 3px;
   }
 
   .timer {
     padding-top: 0px; 
+    padding-bottom: 3px;
   }
 }
