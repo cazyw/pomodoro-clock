@@ -6,6 +6,7 @@
 
 html {
   height: 95%;
+  min-height: 580px;
 }
 body {
   margin: 10px;
@@ -114,16 +115,23 @@ text#countdown {
   text-align: center;
 }
 
-.timer-operations #state {
-  font-size: 0.7em;
-}
-
 .timer-operator {
-  cursor: pointer;
+  text-align: center;
   padding: 0px 0px;
 }
 
+.timer-operator:nth-child(odd){
+  cursor: pointer;
+}
+
+.timer-operator:nth-child(even){
+  font-size: 0.7em;
+}
+
 @media (max-width: 460px) {
+  html {
+    min-height: 400px;
+  }
   h1 {
     font-size: 2em;
   }
@@ -137,11 +145,9 @@ text#countdown {
 
   .break-session {
     padding-top: 0px;
-    padding-bottom: 3px;
   }
 
   .timer {
     padding-top: 0px; 
-    padding-bottom: 3px;
   }
 }
