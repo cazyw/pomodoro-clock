@@ -48,15 +48,17 @@ path#circ-drawing.drawing-break {
   -webkit-transition: stroke-dashoffset var(--my-transition-time) linear;
   -o-transition: stroke-dashoffset var(--my-transition-time) linear;
   transition: stroke-dashoffset var(--my-transition-time) linear;
-  stroke: rgb(97, 181, 253);
+  stroke: rgb(63, 191, 127);
   stroke-dasharray: var(--circle-length) var(--circle-length);
   stroke-dashoffset: var(--circle-length);
 }
 
 text#countdown {
   text-anchor: middle;
-  font-size: 3em;
+  font-size: 3.5em;
   fill: rgb(51, 51, 51);
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
 }
 
 .break-session {
@@ -91,6 +93,12 @@ text#countdown {
 .timer-length:nth-child(odd) {
   cursor: pointer;
 }
+
+.timer-length:nth-child(even) {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+}
+
 
 .timer {
   display: flex;

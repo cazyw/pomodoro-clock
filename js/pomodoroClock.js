@@ -3,8 +3,9 @@ let timer
 let time = {
   sessionTime: 1500,
   breakTime: 300,
+  endTime: 0,
   status: "session",
-  breakColor: "rgb(97, 181, 253)",
+  breakColor: "rgb(63, 191, 127)",
   sessionColor: "rgb(255, 165, 0)"
 }
 
@@ -36,12 +37,13 @@ const startTimer = () => {
   let path = document.getElementById("circ-drawing")
   if (!path.classList.contains("drawing-session") && !path.classList.contains("drawing-break")){
     time.status === "session" ? startDrawing("session", "break") : startDrawing("break", "session")
+    time.endTime = new Date().getTime()
+    time.status === "session" ? (time.endTime += time.sessionTime * 1000) : (time.endTime += time.breakTime * 1000) 
     timer = setInterval(countDown, 1000)
   }
 }
 
 const countDown = () => {
-  
   if (time.sessionTime === 0 || time.breakTime === 0) {
     clearInterval(timer)
     let oldStatus = time.status
@@ -49,11 +51,12 @@ const countDown = () => {
     time.status = newStatus
     updateDisplay()
     startDrawing(newStatus, oldStatus)
+    time.endTime = new Date().getTime() + (time[newStatus + "Time"] * 1000)
     timer = setInterval(countDown, 1000)
   } else {
-    time[time.status + "Time"] -= 1
+    let now = new Date().getTime()
+    time[time.status + "Time"] = Math.ceil((time.endTime - now) / 1000)
     updateDisplay()
-    console.log(time.sessionTime, time.breakTime)
   }
 }
 
