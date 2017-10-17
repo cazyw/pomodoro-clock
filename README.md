@@ -12,7 +12,7 @@ Build an app that is functionally similar to this: https://codepen.io/freeCodeCa
 
 ## Operating Instructions
 
-<!-- <img src="" width="450" alt=""> -->
+<img src="https://cazyw.github.io/img/js-pomodoro.jpg" width="450" alt="Pomodoro Timer">
 Currently it's possible to:
 * Set and change the length of the timer (in minutes)
 * Start the timer
@@ -20,7 +20,7 @@ Currently it's possible to:
 * Restart a paused timer
 * Clear the timer
 
-The timer cycles between study sessions and breaks
+The timer cycles between study sessions (orange) and breaks (green)
 
 ## Discussion
 
